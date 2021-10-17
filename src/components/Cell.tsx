@@ -1,6 +1,6 @@
 import React from 'react'
 import './Cell.css'
-import { iGameCell } from '../commonInterfaces'
+import { iGameCell } from '../interfaces/commonInterfaces'
 
 type iCell = {
   gameCell: iGameCell

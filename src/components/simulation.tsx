@@ -1,4 +1,4 @@
-import { iGameCell } from './commonInterfaces'
+import { iGameCell } from '../interfaces/commonInterfaces'
 // @ts-ignore
 import cloneDeep from 'lodash.clonedeep'
 

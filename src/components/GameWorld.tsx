@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Cell from './Cell'
-import { iGameCell } from '../commonInterfaces'
+import { iGameCell } from '../interfaces/commonInterfaces'
 import {
   changeCellHealth,
   convertSimulationToArray,
   generateSimulation,
   resetSimulation,
   updateSimulation,
-} from '../simulation'
+} from './simulation'
 import './GameWorld.css'
 
 type iGameWorld = {
