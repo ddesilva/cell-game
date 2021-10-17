@@ -1,7 +1,6 @@
-
 export type iGameCell = {
-    row: number
-    column: number
-    position: number
-    isActive: boolean
+  row: number
+  col: number
+  position: number
+  isActive: boolean
 }

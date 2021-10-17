@@ -1,3 +1,6 @@
-.gameWorld {
+.game-world {
   display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  width:520px;
 }

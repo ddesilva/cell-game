@@ -8,7 +8,13 @@ type iCell = {
 }
 
 const Cell: React.FC<iCell> = (props) => {
-  return <div className="cell" onClick={(e) => props.onCellClick(props.gameCell)} />
+  const { gameCell } = props
+  return (
+    <div
+      className={`cell ${gameCell.isActive ? 'cell-active' : ''}`}
+      onClick={(e) => props.onCellClick(props.gameCell)}
+    />
+  )
 }
 
 export default Cell
