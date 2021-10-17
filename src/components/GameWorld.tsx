@@ -1,36 +1,58 @@
 import React, { useState, useEffect } from 'react'
 import Cell from './Cell'
 import { iGameCell } from '../commonInterfaces'
-import { generateSimulation, updateCells } from '../utilities'
+import {
+  changeCellHealth,
+  convertSimulationToArray,
+  generateSimulation,
+  resetSimulation,
+  updateSimulation,
+} from '../simulation'
 import './GameWorld.css'
 
 type iGameWorld = {
   gridSize: number
+  cellSize: number
+  margin: number
 }
 
 const GameWorld: React.FC<iGameWorld> = (props) => {
-  const [gameCells, setGameCells] = useState([])
+  const [simulation, setSimulation] = useState<Array<Object>>([])
+  const { gridSize, margin, cellSize } = props
 
   useEffect(() => {
-    const cells = generateSimulation(props.gridSize)
-    // @ts-ignore
-    setGameCells(cells)
-  }, [])
+    const simulation = generateSimulation(gridSize)
+
+    setSimulation(simulation)
+  }, [gridSize])
 
   const onCellClick = (cell: iGameCell) => {
-    const updatedCells = updateCells(gameCells, cell)
-    setGameCells(updatedCells)
+    const updatedSimulation = changeCellHealth(simulation, cell)
+    setSimulation(updatedSimulation)
   }
 
-  console.log(gameCells)
+  const nextGenerationClick = () => {
+    const updatedSimulation = updateSimulation(simulation, gridSize)
+    setSimulation(updatedSimulation)
+  }
+  const resetClick = () => {
+    const updatedSimulation = resetSimulation(simulation, gridSize)
+    setSimulation(updatedSimulation)
+  }
+
+  const gameCells = simulation.length > 0 && convertSimulationToArray(simulation, gridSize)
 
   return (
-    <div className="game-world">
-      {gameCells &&
-        gameCells.map((gameCell: iGameCell, key: number) => {
-          return <Cell key={key} gameCell={gameCell} onCellClick={onCellClick} />
-        })}
-    </div>
+    <>
+      <button onClick={nextGenerationClick}>Next Generation</button>
+      <button onClick={resetClick}>Reset</button>
+      <div className="game-world" style={{ width: gridSize * cellSize + gridSize * margin * 2 }}>
+        {gameCells &&
+          gameCells.map((gameCell: iGameCell, key: number) => {
+            return <Cell key={key} gameCell={gameCell} onCellClick={onCellClick} cellSize={cellSize} margin={margin} />
+          })}
+      </div>
+    </>
   )
 }
 

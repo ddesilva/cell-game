@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>Cell Game</h1>
-      <GameWorld gridSize={10} />
+      <GameWorld gridSize={6} margin={1} cellSize={50} />
     </div>
   )
 }
