@@ -64,6 +64,7 @@ export const checkNeighbours = (simulation: any, row: number, col: number, gridS
   return count
 }
 
+// TODO: This is not that performant. It might be better to look around active cells only.
 export const updateSimulation = (simulation: any, gridSize: number) => {
   const newSimulation = generateSimulation(gridSize) // need a fresh instance
 
